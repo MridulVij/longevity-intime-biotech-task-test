@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "501214595629",
+    "project_id": "longevitytasktest",
+    "storage_bucket": "longevitytasktest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501214595629:android:3441677f8a6a10919506a4",
+        "android_client_info": {
+          "package_name": "com.android.longevityintimebiotech.longevity_intime_biotech_task_test"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCck65yRM4H7grXcf5FqiRArt0IkGz2_Sk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
