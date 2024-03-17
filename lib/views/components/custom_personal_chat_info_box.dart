@@ -1,12 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:longevity_intime_biotech_task_test/controllers/constants/colors.dart';
 
-class PersonalChatInfoBox extends StatefulWidget {
+class CustomPersonalChatInfoBox extends StatefulWidget {
   String personMessage;
   String personName;
   int noOfMessages;
 
-  PersonalChatInfoBox({
+  CustomPersonalChatInfoBox({
     Key? key,
     required this.personMessage,
     required this.personName,
@@ -14,10 +15,11 @@ class PersonalChatInfoBox extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<PersonalChatInfoBox> createState() => _PersonalChatInfoBoxState();
+  State<CustomPersonalChatInfoBox> createState() =>
+      _CustomPersonalChatInfoBoxState();
 }
 
-class _PersonalChatInfoBoxState extends State<PersonalChatInfoBox> {
+class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,6 +35,7 @@ class _PersonalChatInfoBoxState extends State<PersonalChatInfoBox> {
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: CircleAvatar(
                   //backgroundImage: ,
+                  backgroundColor: CustomColors.chipNotifyColor,
                   radius: 25,
                 ),
               ),
