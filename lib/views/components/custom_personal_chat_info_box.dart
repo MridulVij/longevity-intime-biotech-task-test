@@ -38,29 +38,20 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  radius: 20,
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(100)),
+                  height: 40,
+                  width: 40,
                   child: ClipRRect(
-                    // borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(100),
                     child: SvgPicture.asset(
                       widget.personLogo,
-                      // height: 1,
+                      // height: 30,
                       // width: 30,
                     ),
                   ),
                 ),
-                // SizedBox(
-                //   height: 40,
-                //   width: 40,
-                //   child: ClipRRect(
-                //     borderRadius: BorderRadius.circular(100),
-                //     child: SvgPicture.asset(
-                //       widget.personLogo,
-                //       // height: 30,
-                //       // width: 30,
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   width: 15,
                 ),
