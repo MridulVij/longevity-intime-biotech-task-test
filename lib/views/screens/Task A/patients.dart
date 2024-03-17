@@ -148,6 +148,7 @@ class _PatientsState extends State<Patients> {
                 ],
               ),
               CustomPersonalChatInfoBox(
+                personLogo: CustomIcons.dummyPerson1,
                 noOfMessages: 1,
                 personMessage: '1h ago, 2 unread message',
                 personName: 'Jason LeBron',
