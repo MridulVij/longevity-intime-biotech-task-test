@@ -7,7 +7,7 @@ class CustomFilterChip extends StatefulWidget {
   final String? chipName;
   final String? chipIcon;
   final bool? isSelected;
-  final Function? onTap;
+  final VoidCallback onTap;
 
   CustomFilterChip({
     Key? key,
@@ -32,7 +32,7 @@ class _CustomFilterChipState extends State<CustomFilterChip> {
         ? CustomColors.whiteColor
         : CustomColors.primaryTextColor;
     return GestureDetector(
-      onTap: widget.onTap!(),
+      onTap: widget.onTap,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         height: 32,

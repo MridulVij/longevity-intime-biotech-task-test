@@ -16,7 +16,7 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
+      height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: CustomColors.primaryBackgroundColor,
