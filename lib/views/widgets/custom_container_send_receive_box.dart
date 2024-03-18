@@ -13,6 +13,7 @@ class CustomContainerSendReceiveBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: (isReceived)
@@ -30,14 +31,14 @@ class CustomContainerSendReceiveBox extends StatelessWidget {
           color: (isReceived)
               ? CustomColors.primaryBackgroundColor
               : const Color.fromARGB(49, 34, 219, 108)),
-      child: Center(
-        child: Expanded(
-          child: Text(
+      child: Column(
+        children: [
+          Text(
             message!,
             style: const TextStyle(
                 color: CustomColors.primaryTextColor, fontSize: 15),
           ),
-        ),
+        ],
       ),
     );
   }

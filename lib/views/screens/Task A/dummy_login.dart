@@ -11,8 +11,8 @@ class DummyLogin extends StatefulWidget {
 
 class _DummyLoginState extends State<DummyLogin> {
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
+  // final TextEditingController nameController = TextEditingController();
 
   bool isButtonClick = false;
 
@@ -49,7 +49,9 @@ class _DummyLoginState extends State<DummyLogin> {
               onPressed: () {
                 buttonClick();
                 authService.signInWithEmailPass(
-                    emailController.text, passwordController.text);
+                  emailController.text,
+                  passwordController.text,
+                );
               },
               child: Text('Sign In'),
             ),

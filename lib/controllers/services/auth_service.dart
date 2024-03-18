@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -7,6 +8,10 @@ class AuthService {
 
   User? getCurrentUser() {
     return _auth.currentUser;
+  }
+
+  Future<void> signOut() async {
+    return await _auth.signOut();
   }
 
   Future<UserCredential> signInWithEmailPass(String email, password) async {

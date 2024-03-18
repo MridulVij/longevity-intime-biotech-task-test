@@ -8,7 +8,7 @@ import '../../components/custom_appbar.dart';
 import '../../components/custom_textbox_message_sender.dart';
 
 class Chat extends StatelessWidget {
-  final String? receiverId;
+  final String receiverId;
   Chat({
     super.key,
     required this.receiverId,
@@ -24,7 +24,7 @@ class Chat extends StatelessWidget {
 
   void sendMessage() async {
     if (_controller.text.isNotEmpty) {
-      await _chatService.sendMessage(receiverId!, _controller);
+      await _chatService.sendMessage(receiverId, _controller.text);
       _controller.clear();
     }
   }
@@ -42,11 +42,14 @@ class Chat extends StatelessWidget {
         body: Column(
           children: [
             Expanded(
-              child: customWidget.patientChatListView(receiverId!),
+              child: customWidget.patientChatListView(receiverId),
             ),
-            CustomTextboxMessageSender(
-              messageController: _controller,
-              sendMsg: sendMessage,
+            Padding(
+              padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
+              child: CustomTextboxMessageSender(
+                messageController: _controller,
+                sendMsg: sendMessage,
+              ),
             ),
           ],
         ));

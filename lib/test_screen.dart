@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'views/components/custom_textbox_message_sender.dart';
+import 'views/widgets/custom_container_send_receive_box.dart';
 
 class TestScreen extends StatefulWidget {
   const TestScreen({super.key});
@@ -27,12 +28,12 @@ class _TestScreenState extends State<TestScreen> {
     return Scaffold(
         body: SafeArea(
             child: Container(
-                child: CustomTextboxMessageSender(
-      messageController: TextEditingController(),
-      sendMsg: () {
-        print('tapped');
-      },
-    ))));
+      // height: 100,
+      child: CustomContainerSendReceiveBox(
+        isReceived: true,
+        message: 'Hello',
+      ),
+    )));
   }
 }
    /* Scaffold(
