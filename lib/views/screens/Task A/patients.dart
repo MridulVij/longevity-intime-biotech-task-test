@@ -22,22 +22,18 @@ enum Selector {
 }
 
 class Patients extends StatefulWidget {
-  const Patients({super.key});
+  const Patients({Key? key}) : super(key: key);
 
   @override
   State<Patients> createState() => _PatientsState();
 }
 
 class _PatientsState extends State<Patients> {
-  @override
+  final ChatService _chatService = ChatService();
+  final AuthService _authService = AuthService();
   CustomPatientList customPatientList = CustomPatientList();
   final String containerMessage =
       'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process';
-
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   TextEditingController controller = TextEditingController();
   var buttonSelector = Selector.chats;
@@ -65,10 +61,9 @@ class _PatientsState extends State<Patients> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Box
@@ -160,31 +155,6 @@ class _PatientsState extends State<Patients> {
               const SizedBox(
                 height: 20,
               ),
-              /*
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 15),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Recent',
-                      style: TextStyle(
-                        color: CustomColors.primaryTextColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 0,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              */
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
@@ -192,7 +162,7 @@ class _PatientsState extends State<Patients> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'All Patients',
                           style: TextStyle(
                             color: CustomColors.primaryTextColor,
@@ -202,7 +172,7 @@ class _PatientsState extends State<Patients> {
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               'Recent first - ',
                               style: TextStyle(
                                 color: CustomColors.primaryTextColor,
@@ -212,7 +182,7 @@ class _PatientsState extends State<Patients> {
                             ),
                             InkWell(
                               onTap: () {},
-                              child: Text(
+                              child: const Text(
                                 'Tap To Filter',
                                 style: TextStyle(
                                   color: CustomColors.primarySelectedColor,
@@ -229,82 +199,45 @@ class _PatientsState extends State<Patients> {
                 ),
               ),
               // Patient List
-              customPatientList.allPatientList(),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 1,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jane LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   // Make sure to just give 9 value after that 9+ applied
-              //   noOfMessages: 9,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason Cooper',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 0,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Bessie Cooper',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 1,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Floyd Miles',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 2,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 0,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 1,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 2,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 0,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
-              // CustomPersonalChatInfoBox(
-              //   gotoScreen: Chat(),
-              //   personLogo: CustomIcons.noProfile,
-              //   noOfMessages: 1,
-              //   personMessage: '1h ago, 2 unread message',
-              //   personName: 'Jason LeBron',
-              // ),
+              // customPatientList.allPatientList(),
+              allPatientList()
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget allPatientList() {
+    return StreamBuilder(
+        stream: _chatService.getUserStream(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Text('Error Loading Users!');
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator();
+          } else {
+            return ListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              children: snapshot.data!
+                  .map<Widget>((patientData) =>
+                      _allPatientListItem(patientData, context))
+                  .toList(),
+            );
+          }
+        });
+  }
+
+  Widget _allPatientListItem(
+      Map<String, dynamic> patientData, BuildContext context) {
+    // if (patientData['email'] != _authService.getCurrentUser()!.email)
+    return CustomPersonalChatInfoBox(
+      gotoScreen: const Chat(),
+      personLogo: patientData['profileImg'] ?? CustomIcons.noProfile,
+      noOfMessages: 0,
+      personMessage: '1h ago, 2 unread message',
+      personName: patientData['name'],
     );
   }
 }

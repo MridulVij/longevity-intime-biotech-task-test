@@ -36,7 +36,7 @@ class CustomPatientList {
       personLogo: CustomIcons.noProfile,
       noOfMessages: 0,
       personMessage: '1h ago, 2 unread message',
-      personName: patientData['name'],
+      personName: patientData['email'],
     );
   }
 }

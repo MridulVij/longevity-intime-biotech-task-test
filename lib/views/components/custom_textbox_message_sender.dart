@@ -19,10 +19,6 @@ class CustomTextboxMessageSender extends StatelessWidget {
           hintStyle: TextStyle(
             color: Color.fromARGB(92, 94, 169, 250),
           ),
-          suffixIcon: Icon(
-            Icons.search,
-            size: 18,
-          ),
         ),
       ),
     );
