@@ -55,25 +55,34 @@ class CustomWidgetProvider {
     personName,
   ) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
-          height: 40,
-          width: 40,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(100),
-            child: (personLogo == '')
-                ? SvgPicture.asset(CustomIcons.noProfile)
-                : Image.network(personLogo),
-          ),
-        ),
-        Text(
-          personName,
-          style: const TextStyle(
-            color: CustomColors.primaryTextColor,
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-          ),
+        Row(
+          children: [
+            Container(
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(100)),
+              height: 40,
+              width: 40,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: (personLogo == '')
+                    ? SvgPicture.asset(CustomIcons.noProfile)
+                    : Image.network(personLogo),
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+            Text(
+              personName,
+              style: const TextStyle(
+                color: CustomColors.primaryTextColor,
+                fontSize: 24,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
         ),
         IconButton(
           onPressed: () {
@@ -89,7 +98,7 @@ class CustomWidgetProvider {
     );
   }
 
-  Widget patientChatListView(String receiverId) {
+  Widget patientChatListView(String receiverId, BuildContext context) {
     String senderId = _authService.getCurrentUser()!.uid;
     final Utils utils = Utils();
     return StreamBuilder(
@@ -105,7 +114,7 @@ class CustomWidgetProvider {
           );
         } else {
           return ListView(
-            controller: utils.scrollController,
+            // controller: utils.scrollController,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: snapshot.data!.docs

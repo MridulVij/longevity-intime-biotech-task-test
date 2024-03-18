@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:longevity_intime_biotech_task_test/controllers/utils/utils.dart';
 import 'package:longevity_intime_biotech_task_test/models/messages.dart';
 
 class ChatService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final Utils utils = Utils();
 
   Stream<List<Map<String, dynamic>>> getUserStream() {
     return _firestore.collection('Users').snapshots().map((snapshot) {
@@ -51,5 +54,14 @@ class ChatService {
         .collection('messages')
         .orderBy('timestamp', descending: false)
         .snapshots();
+  }
+
+  void sendMessageLoad(
+      String receiverId, TextEditingController _controller) async {
+    if (_controller.text.isNotEmpty) {
+      await sendMessage(receiverId, _controller.text)
+          .then((_) => _controller.clear());
+    }
+    // utils.scrollDown();
   }
 }

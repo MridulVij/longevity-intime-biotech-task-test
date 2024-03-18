@@ -27,19 +27,15 @@ class _ChatState extends State<Chat> {
   final Utils utils = Utils();
   CustomWidgetProvider customWidget = CustomWidgetProvider();
 
-  void sendMessage() async {
-    if (_controller.text.isNotEmpty) {
-      await _chatService
-          .sendMessage(widget.receiverId, _controller.text)
-          .then((_) => _controller.clear());
-    }
-    utils.scrollDown();
-  }
-
   @override
   void initState() {
     super.initState();
-    utils.focusNode();
+    // utils.focusNode();
+    // utils.scrollController;
+  }
+
+  void sendMessage() {
+    _chatService.sendMessageLoad(widget.receiverId, _controller);
   }
 
   @override
@@ -53,15 +49,19 @@ class _ChatState extends State<Chat> {
         ),
         body: Column(
           children: [
-            customWidgetProvider.customPatientInfoCallTile(
-                widget.personProfile, widget.personName),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: customWidgetProvider.customPatientInfoCallTile(
+                  widget.personProfile, widget.personName),
+            ),
             Expanded(
-              child: customWidget.patientChatListView(widget.receiverId),
+              child:
+                  customWidget.patientChatListView(widget.receiverId, context),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
               child: CustomTextboxMessageSender(
-                focusNode: utils.myFocusNode,
+                // focusNode: utils.myFocusNode,
                 messageController: _controller,
                 sendMsg: sendMessage,
               ),

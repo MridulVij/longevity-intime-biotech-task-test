@@ -25,7 +25,7 @@ class CustomTextboxMessageSender extends StatelessWidget {
               borderRadius: BorderRadius.circular(50),
               color: CustomColors.primaryBackgroundColor),
           child: TextFormField(
-            focusNode: focusNode,
+            // focusNode: focusNode,
             controller: messageController,
             decoration: const InputDecoration(
               border: InputBorder.none,
