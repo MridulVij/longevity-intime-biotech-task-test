@@ -1,16 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../constants/colors.dart';
+import '../constants/icons.dart';
+import '../services/auth_service.dart';
+import '../services/chat_service.dart';
+import '../../views/components/custom_personal_chat_info_box.dart';
+import '../../views/screens/Task A/chat.dart';
+import '../../views/widgets/custom_container_send_receive_box.dart';
 
-import '../../controllers/constants/colors.dart';
-import '../../controllers/constants/icons.dart';
-import '../../controllers/services/auth_service.dart';
-import '../../controllers/services/chat_service.dart';
-import '../components/custom_personal_chat_info_box.dart';
-import '../screens/Task A/chat.dart';
-import 'custom_container_send_receive_box.dart';
-
-class CustomWidget {
+class CustomWidgetProvider {
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
 
@@ -125,9 +124,16 @@ class CustomWidget {
 
     // if this User is receiver then message in right with green
     bool leftRightAlignment = isCurrentUser ? false : true;
-    return CustomContainerSendReceiveBox(
-      isReceived: leftRightAlignment,
-      message: data['message'],
+    return Column(
+      crossAxisAlignment: leftRightAlignment
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.end,
+      children: [
+        CustomContainerSendReceiveBox(
+          isReceived: leftRightAlignment,
+          message: data['message'],
+        ),
+      ],
     );
   }
 

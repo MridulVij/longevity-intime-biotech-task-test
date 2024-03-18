@@ -3,7 +3,7 @@ import 'package:longevity_intime_biotech_task_test/controllers/constants/colors.
 import 'package:longevity_intime_biotech_task_test/controllers/services/auth_service.dart';
 
 class DummyLogin extends StatefulWidget {
-  DummyLogin({super.key});
+  const DummyLogin({super.key});
 
   @override
   State<DummyLogin> createState() => _DummyLoginState();
@@ -12,7 +12,6 @@ class DummyLogin extends StatefulWidget {
 class _DummyLoginState extends State<DummyLogin> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  // final TextEditingController nameController = TextEditingController();
 
   bool isButtonClick = false;
 
@@ -30,21 +29,29 @@ class _DummyLoginState extends State<DummyLogin> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'This is Dummy Login for Testing Actual Chatting Functionality',
               style: TextStyle(color: CustomColors.primaryTextColor),
             ),
-            Text('Test Email - testuser@gmail.com'),
-            Text('Test Password - testuser@123'),
+            const Text('Doctor Login:-'),
+            const Text('Test Email - testuser1@gmail.com'),
+            const Text('Test Password - 123456'),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text('Patient Login:-'),
+            const Text('Test Email - testuser2@gmail.com'),
+            const Text('Test Password - 123456'),
             TextFormField(
               controller: emailController,
-              decoration: InputDecoration(hintText: 'Enter Test Email'),
+              decoration: const InputDecoration(hintText: 'Enter Test Email'),
             ),
             TextFormField(
               controller: passwordController,
-              decoration: InputDecoration(hintText: 'Enter Test Password'),
+              decoration:
+                  const InputDecoration(hintText: 'Enter Test Password'),
             ),
-            if (isButtonClick) CircularProgressIndicator(),
+            if (isButtonClick) const CircularProgressIndicator(),
             ElevatedButton(
               onPressed: () {
                 buttonClick();
@@ -53,12 +60,14 @@ class _DummyLoginState extends State<DummyLogin> {
                   passwordController.text,
                 );
               },
-              child: Text('Sign In'),
+              child: const Text('Sign In'),
             ),
-            Text(
-              'Why Login? Because App is Connected with Firebase Backend and we have to test Doctor to Patient Chat Thats Why We Require 2 Id\'s to Test This Functanility!',
+            const Text(
+              'Why Login?\nBecause App is Connected with Firebase Backend and we have to test Doctor to Patient Chats Thats Why We Require 2 Id\'s to Test This Functionality!',
               style: TextStyle(color: CustomColors.primarySelectedColor),
             ),
+            const Text(
+                'But i have used Doctor App\'s Chat UI as a Patient App Chat UI'),
           ],
         ),
       ),

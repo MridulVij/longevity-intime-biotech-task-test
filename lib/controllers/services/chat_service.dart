@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:longevity_intime_biotech_task_test/models/message.dart';
+import 'package:longevity_intime_biotech_task_test/models/messages.dart';
 
 class ChatService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -21,7 +21,7 @@ class ChatService {
     final String currentUserEmail = _auth.currentUser!.email!;
     final Timestamp timestamp = Timestamp.now();
 
-    Message newMessage = Message(
+    Messages newMessage = Messages(
       message: message,
       receiverId: receiverId,
       senderEmail: currentUserEmail,

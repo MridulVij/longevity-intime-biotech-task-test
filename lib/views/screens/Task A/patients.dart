@@ -10,7 +10,7 @@ import '../../components/custom_filter_chip.dart';
 import '../../components/custom_personal_chat_info_box.dart';
 import '../../components/custom_searchbox.dart';
 import '../../widgets/custom_message_container.dart';
-import '../../widgets/custom_widget.dart';
+import '../../../controllers/providers/custom_widget_provider.dart';
 import 'chat.dart';
 
 enum Selector {
@@ -31,7 +31,7 @@ class Patients extends StatefulWidget {
 class _PatientsState extends State<Patients> {
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
-  CustomWidget customPatientList = CustomWidget();
+  CustomWidgetProvider customPatientList = CustomWidgetProvider();
   final String containerMessage =
       'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process';
 

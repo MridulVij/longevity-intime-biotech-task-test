@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/services/auth_service.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/services/chat_service.dart';
-import 'package:longevity_intime_biotech_task_test/views/widgets/custom_widget.dart';
+import 'package:longevity_intime_biotech_task_test/controllers/providers/custom_widget_provider.dart';
 
 import '../../components/custom_appbar.dart';
 import '../../components/custom_textbox_message_sender.dart';
@@ -20,7 +20,7 @@ class Chat extends StatelessWidget {
 
   final TextEditingController _controller = TextEditingController();
 
-  CustomWidget customWidget = CustomWidget();
+  CustomWidgetProvider customWidget = CustomWidgetProvider();
 
   void sendMessage() async {
     if (_controller.text.isNotEmpty) {

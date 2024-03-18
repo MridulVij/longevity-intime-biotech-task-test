@@ -3,14 +3,14 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Message {
+class Messages {
   final String senderId;
   final String senderEmail;
   final String receiverId;
   final String? receiverEmail;
   final String message;
   final Timestamp timestamp;
-  Message({
+  Messages({
     required this.senderId,
     required this.senderEmail,
     required this.receiverId,
