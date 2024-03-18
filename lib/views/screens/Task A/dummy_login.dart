@@ -67,7 +67,7 @@ class _DummyLoginState extends State<DummyLogin> {
               style: TextStyle(color: CustomColors.primarySelectedColor),
             ),
             const Text(
-                'But i have used Doctor App\'s Chat UI as a Patient App Chat UI'),
+                'I have used Doctor App\'s Chat UI as a Patient App Chat UI'),
           ],
         ),
       ),

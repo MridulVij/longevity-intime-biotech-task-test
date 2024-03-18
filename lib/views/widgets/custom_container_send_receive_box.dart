@@ -13,7 +13,7 @@ class CustomContainerSendReceiveBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
           borderRadius: (isReceived)
