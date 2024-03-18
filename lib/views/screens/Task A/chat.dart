@@ -63,7 +63,7 @@ class _ChatState extends State<Chat> {
             ),
           ),
           Expanded(
-            child: customWidget.patientChatListView(widget.receiverId, context),
+            child: customWidget.messageList(widget.receiverId, context),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),

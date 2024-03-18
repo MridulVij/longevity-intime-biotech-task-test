@@ -6,6 +6,7 @@ import '../../controllers/constants/colors.dart';
 import '../../controllers/constants/icons.dart';
 import '../../controllers/services/auth_service.dart';
 import '../../controllers/services/chat_service.dart';
+import '../../controllers/utils/localDataGetterSetter.dart';
 import 'custom_personal_chat_info_box.dart';
 import '../screens/Task A/chat.dart';
 import '../widgets/custom_container_send_receive_box.dart';
@@ -94,12 +95,14 @@ class CustomWidgetProvider {
     );
   }
 
-  Widget patientChatListView(String receiverId, BuildContext context) {
+// All RealTime Chats
+  Widget messageList(String receiverId, BuildContext context) {
     String senderId = _authService.getCurrentUser()!.uid;
-    final Utils utils = Utils();
+
     return StreamBuilder(
       stream: _chatService.receiveMessage(receiverId, senderId),
       builder: ((context, snapshot) {
+        // int msgCount = snapshot.data!.docs.length;
         if (!snapshot.hasData) {
           return const Text('No Chats Found!');
         } else if (snapshot.hasError) {
@@ -109,12 +112,13 @@ class CustomWidgetProvider {
             child: CircularProgressIndicator(),
           );
         } else {
+          // print('msgCount: $msgCount');
           return ListView(
             // controller: utils.scrollController,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: snapshot.data!.docs
-                .map((doc) => buildMessageItem(doc))
+                .map((doc) => _messageListItem(doc))
                 .toList(),
           );
         }
@@ -122,7 +126,7 @@ class CustomWidgetProvider {
     );
   }
 
-  Widget buildMessageItem(DocumentSnapshot doc) {
+  Widget _messageListItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
 
     bool isCurrentUser = data['senderId'] == _authService.getCurrentUser()!.uid;
