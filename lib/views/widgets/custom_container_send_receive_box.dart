@@ -31,13 +31,14 @@ class CustomContainerSendReceiveBox extends StatelessWidget {
               ? CustomColors.primaryBackgroundColor
               : const Color.fromARGB(49, 34, 219, 108)),
       child: Center(
-          child: Expanded(
-        child: Text(
-          message!,
-          style: const TextStyle(
-              color: CustomColors.primaryTextColor, fontSize: 15),
+        child: Expanded(
+          child: Text(
+            message!,
+            style: const TextStyle(
+                color: CustomColors.primaryTextColor, fontSize: 15),
+          ),
         ),
-      )),
+      ),
     );
   }
 }

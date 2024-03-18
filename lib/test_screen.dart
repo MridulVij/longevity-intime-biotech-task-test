@@ -5,6 +5,7 @@ import 'views/components/custom_filter_chip.dart';
 import 'views/components/custom_personal_chat_info_box.dart';
 import 'views/components/custom_searchbox.dart';
 import 'views/screens/Task A/chat.dart';
+import 'views/screens/Task A/dashboard.dart';
 import 'views/screens/Task A/patients.dart';
 import 'views/widgets/custom_container.dart';
 import 'views/widgets/custom_message_container.dart';
@@ -31,7 +32,7 @@ class _TestScreenState extends State<TestScreen> {
     var buttonSelector = Selector.chats;
     TextEditingController controller = TextEditingController();
     //
-    return Patients();
+    return Dashboard();
   }
 }
    /* Scaffold(

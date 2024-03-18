@@ -7,7 +7,7 @@ import 'package:longevity_intime_biotech_task_test/views/components/custom_searc
 
 import '../../components/custom_appbar.dart';
 import '../../components/custom_filter_chip.dart';
-import '../../widgets/custom_container_send_recevie_box.dart';
+import '../../widgets/custom_container_send_receive_box.dart';
 import '../../widgets/custom_message_container.dart';
 
 class Chat extends StatelessWidget {

@@ -6,9 +6,11 @@ import '../../controllers/constants/colors.dart';
 
 class CustomMessageContainer extends StatelessWidget {
   final String? message;
+  final VoidCallback? onTap;
   const CustomMessageContainer({
     Key? key,
     this.message,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -40,7 +42,7 @@ class CustomMessageContainer extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: onTap!,
                     child: const Text(
                       'Dismiss',
                       style: TextStyle(

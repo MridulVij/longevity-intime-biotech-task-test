@@ -23,7 +23,9 @@ class CustomAppbar extends StatelessWidget {
         ),
       ),
       leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back_ios_new_rounded,
             color: CustomColors.primaryTextColor,

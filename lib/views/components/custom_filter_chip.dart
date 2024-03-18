@@ -34,6 +34,7 @@ class _CustomFilterChipState extends State<CustomFilterChip> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
+        // margin: EdgeInsets.symmetric(vertical: ),
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         height: 32,
         decoration: BoxDecoration(

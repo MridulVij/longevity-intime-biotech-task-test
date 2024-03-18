@@ -16,7 +16,7 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: CustomColors.primaryBackgroundColor,
@@ -30,9 +30,17 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
           hintStyle: TextStyle(
             color: Color.fromARGB(92, 94, 169, 250),
           ),
-          suffixIcon: Icon(
-            Icons.search,
-            size: 18,
+          suffixIcon: SizedBox(
+            height: 8,
+            width: 8,
+            child: Icon(
+              Icons.search,
+              color: CustomColors.primaryTextColor,
+            ),
+            // child: SvgPicture.asset(
+            //   CustomIcons.search,
+            //   height: 8,
+            //   width: 8,
           ),
         ),
       ),

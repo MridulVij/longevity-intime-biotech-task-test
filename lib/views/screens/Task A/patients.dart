@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../controllers/constants/colors.dart';
 import '../../../controllers/constants/icons.dart';
@@ -7,6 +8,7 @@ import '../../components/custom_filter_chip.dart';
 import '../../components/custom_personal_chat_info_box.dart';
 import '../../components/custom_searchbox.dart';
 import '../../widgets/custom_message_container.dart';
+import 'chat.dart';
 
 enum Selector {
   archive,
@@ -25,6 +27,9 @@ class Patients extends StatefulWidget {
 
 class _PatientsState extends State<Patients> {
   @override
+  final String containerMessage =
+      'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process';
+
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -36,6 +41,13 @@ class _PatientsState extends State<Patients> {
   void fetchChipData(Selector value) {
     setState(() {
       buttonSelector = value;
+    });
+  }
+
+  bool disableTutorialBox = true;
+  void dismissTutorialBox() {
+    setState(() {
+      disableTutorialBox = false;
     });
   }
 
@@ -56,19 +68,29 @@ class _PatientsState extends State<Patients> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Box
-              const CustomMessageContainer(
-                message:
-                    'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process',
-              ),
-              const SizedBox(
-                height: 40,
-              ),
+              if (disableTutorialBox)
+                Column(
+                  children: [
+                    CustomMessageContainer(
+                      onTap: dismissTutorialBox,
+                      message: containerMessage,
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                  ],
+                ),
+
               // Custom Search Bar
               CustomSearchBox(controller: controller),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
+                  SvgPicture.asset(CustomIcons.info),
+                  const SizedBox(
+                    width: 6,
+                  ),
+                  const Text(
                     'Use username or email to start a new chat',
                     style: TextStyle(
                         fontSize: 15, color: CustomColors.primaryTextColor),
@@ -96,7 +118,7 @@ class _PatientsState extends State<Patients> {
                       width: 10,
                     ),
                     CustomFilterChip(
-                      chipIcon: CustomIcons.chat,
+                      chipIcon: CustomIcons.archive,
                       chipName: '  New Patient  ',
                       countOfNotifications: '',
                       isSelected: buttonSelector == Selector.newPatient,
@@ -108,7 +130,7 @@ class _PatientsState extends State<Patients> {
                       width: 10,
                     ),
                     CustomFilterChip(
-                      chipIcon: CustomIcons.chat,
+                      chipIcon: CustomIcons.unread,
                       chipName: '  Unread  ',
                       countOfNotifications: '',
                       isSelected: buttonSelector == Selector.unread,
@@ -120,35 +142,153 @@ class _PatientsState extends State<Patients> {
                       width: 10,
                     ),
                     CustomFilterChip(
-                      chipIcon: CustomIcons.chat,
+                      chipIcon: CustomIcons.archive,
                       chipName: '  Archive  ',
                       countOfNotifications: '',
                       isSelected: buttonSelector == Selector.archive,
                       onTap: () {
                         fetchChipData(Selector.archive);
                       },
-                    )
+                    ),
                   ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Recent',
-                    style: TextStyle(
-                      color: CustomColors.primaryTextColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Recent',
+                      style: TextStyle(
+                        color: CustomColors.primaryTextColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               CustomPersonalChatInfoBox(
-                personLogo: CustomIcons.dummyPerson1,
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 0,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'All Patients',
+                          style: TextStyle(
+                            color: CustomColors.primaryTextColor,
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Recent first - ',
+                              style: TextStyle(
+                                color: CustomColors.primaryTextColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              child: Text(
+                                'Tap To Filter',
+                                style: TextStyle(
+                                  color: CustomColors.primarySelectedColor,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 1,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jane LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                // Make sure to just give 9 value after that 9+ applied
+                noOfMessages: 9,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason Cooper',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 0,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Bessie Cooper',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 1,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Floyd Miles',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 2,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 0,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 1,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 2,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
+                noOfMessages: 0,
+                personMessage: '1h ago, 2 unread message',
+                personName: 'Jason LeBron',
+              ),
+              CustomPersonalChatInfoBox(
+                gotoScreen: Chat(),
+                personLogo: CustomIcons.noProfile,
                 noOfMessages: 1,
                 personMessage: '1h ago, 2 unread message',
                 personName: 'Jason LeBron',
