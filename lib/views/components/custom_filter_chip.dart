@@ -35,7 +35,7 @@ class _CustomFilterChipState extends State<CustomFilterChip> {
       onTap: widget.onTap,
       child: Container(
         // margin: EdgeInsets.symmetric(vertical: ),
-        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
         height: 32,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50), color: buttonColor),
@@ -43,7 +43,7 @@ class _CustomFilterChipState extends State<CustomFilterChip> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             SizedBox(
               width: 16,
               height: 16,
@@ -52,17 +52,17 @@ class _CustomFilterChipState extends State<CustomFilterChip> {
                 color: textColor,
               ),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Text(
               widget.chipName ?? '',
               style: TextStyle(color: textColor, fontSize: 15),
             ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             if (widget.countOfNotifications != '')
               CustomBackgroundTextChip(
                 count: widget.countOfNotifications,
               ),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
           ],
         ),
       ),
@@ -80,13 +80,14 @@ class CustomBackgroundTextChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50), color: Color(0xFFF70FFB8)),
+          borderRadius: BorderRadius.circular(50),
+          color: const Color(0xFFF70FFB8)),
       child: Center(
         child: Text(
           count!,
-          style: TextStyle(
+          style: const TextStyle(
             height: 1,
           ),
         ),

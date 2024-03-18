@@ -33,8 +33,8 @@ class CustomContainer extends StatelessWidget {
               ? BorderRadius.circular(100)
               : BorderRadius.circular(10),
           color: CustomColors.primaryBackgroundColor),
-      margin: EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,

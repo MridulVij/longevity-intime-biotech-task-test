@@ -4,7 +4,6 @@ class CustomIcons {
   static const unread = 'assets/icons/Box.svg';
   static const info = 'assets/icons/info.svg';
   static const searchIcon = 'assets/icons/search.svg';
-  // static const quick = 'assets/icons/';
   static const oneMsg = 'assets/icons/oneMsg.svg';
   static const multiMsg = 'assets/icons/multiMsg.svg';
   static const dumbells = 'assets/icons/dumbells.svg';

@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:longevity_intime_biotech_task_test/controllers/constants/colors.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/constants/icons.dart';
 
@@ -9,7 +7,7 @@ class CustomTextboxMessageSender extends StatelessWidget {
   final TextEditingController? messageController;
   final VoidCallback sendMsg;
   final FocusNode? focusNode;
-  CustomTextboxMessageSender({
+  const CustomTextboxMessageSender({
     Key? key,
     required this.messageController,
     required this.sendMsg,
@@ -21,7 +19,7 @@ class CustomTextboxMessageSender extends StatelessWidget {
     return Row(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           width: 310,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
@@ -38,7 +36,7 @@ class CustomTextboxMessageSender extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         IconButton(

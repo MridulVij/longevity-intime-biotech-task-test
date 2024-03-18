@@ -19,7 +19,6 @@ class ChatService {
     // Send Messages
     final String currentUserId = _auth.currentUser!.uid;
     final String currentUserEmail = _auth.currentUser!.email!;
-    final Timestamp timestamp = Timestamp.now();
 
     Messages newMessage = Messages(
       message: message,

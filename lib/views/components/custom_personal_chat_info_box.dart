@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:longevity_intime_biotech_task_test/controllers/constants/colors.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/constants/icons.dart';
 
@@ -14,7 +13,7 @@ class CustomPersonalChatInfoBox extends StatefulWidget {
   final String personLogo;
   final Widget gotoScreen;
 
-  CustomPersonalChatInfoBox({
+  const CustomPersonalChatInfoBox({
     Key? key,
     required this.personMessage,
     required this.personName,
@@ -32,7 +31,7 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: Ink(
         height: 50,
         // margin: EdgeInsets.symmetric(vertical: 5),
@@ -62,7 +61,7 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                           : Image.network(widget.personLogo),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
                   Column(
@@ -71,7 +70,7 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                     children: [
                       Text(
                         widget.personName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: CustomColors.primaryTextColor,
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -79,7 +78,7 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                       ),
                       Text(
                         widget.personMessage,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: CustomColors.primaryTextColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -90,7 +89,8 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                 ],
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 2, vertical: 15),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 2, vertical: 15),
                 child: SizedBox(
                   height: 20,
                   child: (widget.noOfMessages > 1)
@@ -104,7 +104,7 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                               bottom: 0,
                               child: Text(
                                 widget.noOfMessages.toString(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: CustomColors.whiteColor,
                                   fontSize: 15,
                                 ),

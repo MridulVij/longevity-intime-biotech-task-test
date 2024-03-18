@@ -22,13 +22,11 @@ class CustomChipIconButton extends StatelessWidget {
           color: CustomColors.primaryBackgroundColor),
       child: Row(
         children: [
-          Container(
-            child: SvgPicture.asset(icon!),
-          ),
+          SvgPicture.asset(icon!),
           Text(
             text!,
-            style:
-                TextStyle(fontSize: 15, color: CustomColors.primaryTextColor),
+            style: const TextStyle(
+                fontSize: 15, color: CustomColors.primaryTextColor),
           ),
         ],
       ),

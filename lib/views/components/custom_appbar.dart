@@ -6,9 +6,9 @@ import '../../controllers/constants/colors.dart';
 class CustomAppbar extends StatelessWidget {
   final String? appBarTitle;
   const CustomAppbar({
-    Key? key,
+    super.key,
     this.appBarTitle,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

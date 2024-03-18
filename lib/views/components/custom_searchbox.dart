@@ -21,10 +21,10 @@ class _CustomSearchBoxState extends State<CustomSearchBox> {
         borderRadius: BorderRadius.circular(10),
         color: CustomColors.primaryBackgroundColor,
       ),
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextFormField(
         controller: widget.controller,
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           border: InputBorder.none,
           hintText: 'Username, Name, Date...',
           hintStyle: TextStyle(

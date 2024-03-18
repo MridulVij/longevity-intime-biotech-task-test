@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../controllers/constants/colors.dart';
 import '../../../controllers/constants/icons.dart';
-import '../../../controllers/services/auth_service.dart';
-import '../../../controllers/services/chat_service.dart';
 import '../../components/custom_appbar.dart';
 import '../../components/custom_filter_chip.dart';
-import '../../components/custom_personal_chat_info_box.dart';
 import '../../components/custom_searchbox.dart';
 import '../../widgets/custom_message_container.dart';
 import '../../components/custom_widget_provider.dart';
-import 'chat.dart';
 
 enum Selector {
   archive,

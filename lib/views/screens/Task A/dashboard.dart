@@ -23,10 +23,10 @@ class _DashboardState extends State<Dashboard> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Patients()),
+                  MaterialPageRoute(builder: (context) => const Patients()),
                 );
               },
-              child: Text('Open Patient List'),
+              child: const Text('Open Patient List'),
             ),
             ElevatedButton(
                 onPressed: () async {
@@ -34,11 +34,11 @@ class _DashboardState extends State<Dashboard> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DummyLogin(),
+                      builder: (context) => const DummyLogin(),
                     ),
                   );
                 },
-                child: Text('Sign Out'))
+                child: const Text('Sign Out'))
           ],
         ),
       ),

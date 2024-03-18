@@ -1,17 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../../controllers/constants/colors.dart';
 
 class CustomMessageContainer extends StatelessWidget {
   final String? message;
   final VoidCallback? onTap;
   const CustomMessageContainer({
-    Key? key,
+    super.key,
     this.message,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

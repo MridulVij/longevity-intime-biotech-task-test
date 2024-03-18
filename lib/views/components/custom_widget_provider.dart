@@ -37,7 +37,6 @@ class CustomWidgetProvider {
 
   Widget _allPatientListItem(
       Map<String, dynamic> patientData, BuildContext context) {
-    // if (patientData['email'] != _authService.getCurrentUser()!.email)
     print(patientData['profileImg']);
     return CustomPersonalChatInfoBox(
       gotoScreen: Chat(
@@ -57,7 +56,6 @@ class CustomWidgetProvider {
   ) {
     return Row(
       children: [
-        //Image
         Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100)),
           height: 40,
@@ -69,7 +67,6 @@ class CustomWidgetProvider {
                 : Image.network(personLogo),
           ),
         ),
-        //Text
         Text(
           personName,
           style: const TextStyle(
@@ -78,7 +75,6 @@ class CustomWidgetProvider {
             fontWeight: FontWeight.w600,
           ),
         ),
-        //iconbutton
         IconButton(
           onPressed: () {
             print('call tapped');
@@ -100,11 +96,11 @@ class CustomWidgetProvider {
       stream: _chatService.receiveMessage(receiverId, senderId),
       builder: ((context, snapshot) {
         if (!snapshot.hasData) {
-          return Text('No Chats Found!');
+          return const Text('No Chats Found!');
         } else if (snapshot.hasError) {
-          return Text('Error, Please Refresh!');
+          return const Text('Error, Please Refresh!');
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
@@ -123,10 +119,9 @@ class CustomWidgetProvider {
 
   Widget buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    // If this is Current user send the message in left with blue
+
     bool isCurrentUser = data['senderId'] == _authService.getCurrentUser()!.uid;
 
-    // if this User is receiver then message in right with green
     bool leftRightAlignment = isCurrentUser ? false : true;
     return Column(
       crossAxisAlignment: leftRightAlignment
@@ -140,35 +135,4 @@ class CustomWidgetProvider {
       ],
     );
   }
-
-  // Widget _buildMessage(String message, bool isReceiver) {
-  //   return Container(
-  //     margin: const EdgeInsets.symmetric(vertical: 10.0),
-  //     child: Padding(
-  //       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-  //       child: Column(
-  //         crossAxisAlignment:
-  //             isReceiver ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-  //         children: <Widget>[
-  //           Text(
-  //             isReceiver ? 'You' : 'Buddy',
-  //             style: const TextStyle(fontWeight: FontWeight.bold),
-  //           ),
-  //           Container(
-  //             decoration: BoxDecoration(
-  //                 borderRadius: BorderRadius.circular(10),
-  //                 color: Colors.deepPurple[50]),
-  //             child: Padding(
-  //               padding: const EdgeInsets.all(6.0),
-  //               child: SelectableText(
-  //                 message.text,
-  //                 onTap: () {},
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }

@@ -5,10 +5,10 @@ class CustomContainerSendReceiveBox extends StatelessWidget {
   final String? message;
   final bool isReceived;
   const CustomContainerSendReceiveBox({
-    Key? key,
+    super.key,
     required this.message,
     required this.isReceived,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:longevity_intime_biotech_task_test/views/screens/Task%20A/dummy_login.dart';
-import 'package:longevity_intime_biotech_task_test/views/screens/Task%20A/patients.dart';
 
 import '../../views/screens/Task A/dashboard.dart';
 
