@@ -51,9 +51,7 @@ class CustomWidgetProvider {
   }
 
   Widget customPatientInfoCallTile(
-    String personLogo,
-    personName,
-  ) {
+      String personLogo, personName, Function? onTap) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -85,9 +83,7 @@ class CustomWidgetProvider {
           ],
         ),
         IconButton(
-          onPressed: () {
-            print('call tapped');
-          },
+          onPressed: onTap!(),
           icon: SvgPicture.asset(
             CustomIcons.call,
             color: CustomColors.primarySelectedColor,

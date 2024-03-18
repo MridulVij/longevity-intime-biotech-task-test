@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/services/chat_service.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/utils/utils.dart';
+import 'package:longevity_intime_biotech_task_test/views/components/custom_alertbox.dart';
 import 'package:longevity_intime_biotech_task_test/views/components/custom_widget_provider.dart';
 import '../../components/custom_appbar.dart';
 import '../../components/custom_textbox_message_sender.dart';
@@ -30,8 +33,6 @@ class _ChatState extends State<Chat> {
   @override
   void initState() {
     super.initState();
-    // utils.focusNode();
-    // utils.scrollController;
   }
 
   void sendMessage() {
@@ -41,32 +42,39 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: CustomAppbar(
-            appBarTitle: 'Chat',
-          ),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: CustomAppbar(
+          appBarTitle: 'Chat',
         ),
-        body: Column(
-          children: [
-            Padding(
+      ),
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              CustomAlertBox.showAlert(context, 'Feature Coming Soon!');
+            },
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: customWidgetProvider.customPatientInfoCallTile(
-                  widget.personProfile, widget.personName),
+                  widget.personProfile, widget.personName, () {
+                //  CustomAlertBox.showAlert(context, 'Hello Test Message');
+              }),
             ),
-            Expanded(
-              child:
-                  customWidget.patientChatListView(widget.receiverId, context),
+          ),
+          Expanded(
+            child: customWidget.patientChatListView(widget.receiverId, context),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
+            child: CustomTextboxMessageSender(
+              // focusNode: utils.myFocusNode,
+              messageController: _controller,
+              sendMsg: sendMessage,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
-              child: CustomTextboxMessageSender(
-                // focusNode: utils.myFocusNode,
-                messageController: _controller,
-                sendMsg: sendMessage,
-              ),
-            ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

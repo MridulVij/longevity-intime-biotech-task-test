@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../controllers/constants/colors.dart';
 import '../../../controllers/constants/icons.dart';
+import '../../components/custom_alertbox.dart';
 import '../../components/custom_appbar.dart';
 import '../../components/custom_filter_chip.dart';
 import '../../components/custom_searchbox.dart';
@@ -74,7 +76,11 @@ class _PatientsState extends State<Patients> {
                 ),
 
               // Custom Search Bar
-              CustomSearchBox(controller: controller),
+              GestureDetector(
+                  onTap: () {
+                    CustomAlertBox.showAlert(context, 'Feature Coming Soon!');
+                  },
+                  child: CustomSearchBox(controller: controller)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -174,7 +180,10 @@ class _PatientsState extends State<Patients> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                CustomAlertBox.showAlert(
+                                    context, 'Feature Coming Soon!');
+                              },
                               child: const Text(
                                 'Tap To Filter',
                                 style: TextStyle(
