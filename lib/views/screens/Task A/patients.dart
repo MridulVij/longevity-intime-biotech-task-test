@@ -10,7 +10,7 @@ import '../../components/custom_filter_chip.dart';
 import '../../components/custom_personal_chat_info_box.dart';
 import '../../components/custom_searchbox.dart';
 import '../../widgets/custom_message_container.dart';
-import '../../widgets/custom_patient_list.dart';
+import '../../widgets/custom_widget.dart';
 import 'chat.dart';
 
 enum Selector {
@@ -31,7 +31,7 @@ class Patients extends StatefulWidget {
 class _PatientsState extends State<Patients> {
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
-  CustomPatientList customPatientList = CustomPatientList();
+  CustomWidget customPatientList = CustomWidget();
   final String containerMessage =
       'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process';
 
@@ -199,45 +199,11 @@ class _PatientsState extends State<Patients> {
                 ),
               ),
               // Patient List
-              // customPatientList.allPatientList(),
-              allPatientList()
+              customPatientList.allPatientList(),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget allPatientList() {
-    return StreamBuilder(
-        stream: _chatService.getUserStream(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('Error Loading Users!');
-          } else if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else {
-            return ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              children: snapshot.data!
-                  .map<Widget>((patientData) =>
-                      _allPatientListItem(patientData, context))
-                  .toList(),
-            );
-          }
-        });
-  }
-
-  Widget _allPatientListItem(
-      Map<String, dynamic> patientData, BuildContext context) {
-    // if (patientData['email'] != _authService.getCurrentUser()!.email)
-    return CustomPersonalChatInfoBox(
-      gotoScreen: const Chat(),
-      personLogo: patientData['profileImg'] ?? CustomIcons.noProfile,
-      noOfMessages: 0,
-      personMessage: '1h ago, 2 unread message',
-      personName: patientData['name'],
     );
   }
 }

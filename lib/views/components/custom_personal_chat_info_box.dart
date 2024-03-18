@@ -57,11 +57,9 @@ class _CustomPersonalChatInfoBoxState extends State<CustomPersonalChatInfoBox> {
                     width: 40,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: SvgPicture.asset(
-                        widget.personLogo,
-                        // height: 30,
-                        // width: 30,
-                      ),
+                      child: (widget.personLogo == '')
+                          ? SvgPicture.asset(CustomIcons.noProfile)
+                          : Image.network(widget.personLogo),
                     ),
                   ),
                   SizedBox(
