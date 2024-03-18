@@ -38,6 +38,7 @@ class _ChatState extends State<Chat> {
           .sendMessage(widget.receiverId, _controller.text)
           .then((_) => _controller.clear());
     }
+    utils.scrollDown();
   }
 
   @override

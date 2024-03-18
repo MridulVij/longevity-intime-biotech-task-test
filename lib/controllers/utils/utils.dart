@@ -8,12 +8,13 @@ class Utils {
   void focusNode() {
     myFocusNode.addListener(() {
       if (myFocusNode.hasFocus) {
-        Future.delayed(Duration(milliseconds: 500), () => _scrollDown());
+        Future.delayed(Duration(milliseconds: 500), () => scrollDown());
       }
     });
+    Future.delayed(Duration(milliseconds: 500), () => scrollDown());
   }
 
-  void _scrollDown() {
+  void scrollDown() {
     scrollController.animateTo(
       scrollController.position.maxScrollExtent,
       duration: Duration(seconds: 1),
