@@ -1,53 +1,36 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:longevity_intime_biotech_task_test/controllers/services/auth_service.dart';
 import 'package:longevity_intime_biotech_task_test/controllers/services/chat_service.dart';
-import 'package:longevity_intime_biotech_task_test/controllers/providers/custom_widget_provider.dart';
+import 'package:longevity_intime_biotech_task_test/controllers/utils/utils.dart';
+import 'package:longevity_intime_biotech_task_test/views/components/custom_widget_provider.dart';
 
 import '../../components/custom_appbar.dart';
 import '../../components/custom_textbox_message_sender.dart';
 
 class Chat extends StatefulWidget {
+  final String personProfile;
+  final String personName;
   final String receiverId;
   Chat({
-    super.key,
+    Key? key,
+    required this.personProfile,
+    required this.personName,
     required this.receiverId,
-  });
+  }) : super(key: key);
 
   @override
   State<Chat> createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
-  @override
-  void initState() {
-    super.initState();
-    focusNode();
-  }
-
+  final CustomWidgetProvider customWidgetProvider = CustomWidgetProvider();
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
   final TextEditingController _controller = TextEditingController();
+  final Utils utils = Utils();
   CustomWidgetProvider customWidget = CustomWidgetProvider();
-  final ScrollController _scrollController = ScrollController();
-  // text field form focus
-  FocusNode myFocusNode = FocusNode();
-
-  void focusNode() {
-    myFocusNode.addListener(() {
-      if (myFocusNode.hasFocus) {
-        Future.delayed(Duration(milliseconds: 500), () => _scrollDown());
-      }
-    });
-  }
-
-  void _scrollDown() {
-    _scrollController.animateTo(
-      _scrollController.position.maxScrollExtent,
-      duration: Duration(seconds: 1),
-      curve: Curves.fastOutSlowIn,
-    );
-  }
 
   void sendMessage() async {
     if (_controller.text.isNotEmpty) {
@@ -55,6 +38,12 @@ class _ChatState extends State<Chat> {
           .sendMessage(widget.receiverId, _controller.text)
           .then((_) => _controller.clear());
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    utils.focusNode();
   }
 
   @override
@@ -68,13 +57,15 @@ class _ChatState extends State<Chat> {
         ),
         body: Column(
           children: [
-            // CustomPatientInfoCallTile(),
+            customWidgetProvider.customPatientInfoCallTile(
+                widget.personProfile, widget.personName),
             Expanded(
               child: customWidget.patientChatListView(widget.receiverId),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, bottom: 10, top: 10),
               child: CustomTextboxMessageSender(
+                focusNode: utils.myFocusNode,
                 messageController: _controller,
                 sendMsg: sendMessage,
               ),

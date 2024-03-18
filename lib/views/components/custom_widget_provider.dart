@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../constants/colors.dart';
-import '../constants/icons.dart';
-import '../services/auth_service.dart';
-import '../services/chat_service.dart';
-import '../../views/components/custom_personal_chat_info_box.dart';
-import '../../views/screens/Task A/chat.dart';
-import '../../views/widgets/custom_container_send_receive_box.dart';
+import 'package:longevity_intime_biotech_task_test/controllers/utils/utils.dart';
+import '../../controllers/constants/colors.dart';
+import '../../controllers/constants/icons.dart';
+import '../../controllers/services/auth_service.dart';
+import '../../controllers/services/chat_service.dart';
+import 'custom_personal_chat_info_box.dart';
+import '../screens/Task A/chat.dart';
+import '../widgets/custom_container_send_receive_box.dart';
 
 class CustomWidgetProvider {
   final ChatService _chatService = ChatService();
@@ -40,8 +41,9 @@ class CustomWidgetProvider {
     print(patientData['profileImg']);
     return CustomPersonalChatInfoBox(
       gotoScreen: Chat(
-        receiverId: patientData['uid'],
-      ),
+          receiverId: patientData['uid'],
+          personProfile: '',
+          personName: 'Jane Cooper'),
       personLogo: '',
       noOfMessages: 0,
       personMessage: '1h ago, 2 unread message',
@@ -93,6 +95,7 @@ class CustomWidgetProvider {
 
   Widget patientChatListView(String receiverId) {
     String senderId = _authService.getCurrentUser()!.uid;
+    final Utils utils = Utils();
     return StreamBuilder(
       stream: _chatService.receiveMessage(receiverId, senderId),
       builder: ((context, snapshot) {
@@ -106,6 +109,7 @@ class CustomWidgetProvider {
           );
         } else {
           return ListView(
+            controller: utils.scrollController,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             children: snapshot.data!.docs
