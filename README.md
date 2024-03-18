@@ -15,7 +15,7 @@ Longevity InTime BioTech App
 
 # State Management
 
-1. Bloc - Business Logic Component.
+1. Bloc - Business Logic Component. (But These Task Does'nt Require)
 
 # Architecture
 
