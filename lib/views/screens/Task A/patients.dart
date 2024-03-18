@@ -3,11 +3,14 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../controllers/constants/colors.dart';
 import '../../../controllers/constants/icons.dart';
+import '../../../controllers/services/auth_service.dart';
+import '../../../controllers/services/chat_service.dart';
 import '../../components/custom_appbar.dart';
 import '../../components/custom_filter_chip.dart';
 import '../../components/custom_personal_chat_info_box.dart';
 import '../../components/custom_searchbox.dart';
 import '../../widgets/custom_message_container.dart';
+import '../../widgets/custom_patient_list.dart';
 import 'chat.dart';
 
 enum Selector {
@@ -27,6 +30,7 @@ class Patients extends StatefulWidget {
 
 class _PatientsState extends State<Patients> {
   @override
+  CustomPatientList customPatientList = CustomPatientList();
   final String containerMessage =
       'Add, look up, update and run AI models for your patients, which makes easier to track appointments and treatment process';
 
@@ -156,6 +160,7 @@ class _PatientsState extends State<Patients> {
               const SizedBox(
                 height: 20,
               ),
+              /*
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: const Row(
@@ -179,6 +184,7 @@ class _PatientsState extends State<Patients> {
                 personMessage: '1h ago, 2 unread message',
                 personName: 'Jason LeBron',
               ),
+              */
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
@@ -222,77 +228,79 @@ class _PatientsState extends State<Patients> {
                   ],
                 ),
               ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 1,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jane LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                // Make sure to just give 9 value after that 9+ applied
-                noOfMessages: 9,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason Cooper',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 0,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Bessie Cooper',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 1,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Floyd Miles',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 2,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 0,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 1,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 2,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 0,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
-              CustomPersonalChatInfoBox(
-                gotoScreen: Chat(),
-                personLogo: CustomIcons.noProfile,
-                noOfMessages: 1,
-                personMessage: '1h ago, 2 unread message',
-                personName: 'Jason LeBron',
-              ),
+              // Patient List
+              customPatientList.allPatientList(),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 1,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jane LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   // Make sure to just give 9 value after that 9+ applied
+              //   noOfMessages: 9,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason Cooper',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 0,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Bessie Cooper',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 1,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Floyd Miles',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 2,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 0,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 1,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 2,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 0,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
+              // CustomPersonalChatInfoBox(
+              //   gotoScreen: Chat(),
+              //   personLogo: CustomIcons.noProfile,
+              //   noOfMessages: 1,
+              //   personMessage: '1h ago, 2 unread message',
+              //   personName: 'Jason LeBron',
+              // ),
             ],
           ),
         ),

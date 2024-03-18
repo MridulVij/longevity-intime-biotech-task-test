@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'controllers/constants/icons.dart';
+import 'controllers/services/auth_gate_service.dart';
 import 'views/components/custom_filter_chip.dart';
 import 'views/components/custom_personal_chat_info_box.dart';
 import 'views/components/custom_searchbox.dart';
@@ -32,7 +33,7 @@ class _TestScreenState extends State<TestScreen> {
     var buttonSelector = Selector.chats;
     TextEditingController controller = TextEditingController();
     //
-    return Dashboard();
+    return AuthGateService();
   }
 }
    /* Scaffold(
