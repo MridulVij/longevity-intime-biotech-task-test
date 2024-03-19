@@ -5,7 +5,7 @@ Longevity InTime BioTech App
 # Description
 
 1. Downloading Steps:-
-   Inside Released APK Folder The Final Build Apk Version is there!
+   Inside 'Released APK' Folder The Final Build Apk Version is there!
    Download APK File - Google Drive Link -
 
 2. User Manual/Guide
