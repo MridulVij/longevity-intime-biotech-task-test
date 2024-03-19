@@ -31,12 +31,6 @@ class _DashboardState extends State<Dashboard> {
             ElevatedButton(
                 onPressed: () async {
                   await authService.signOut();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DummyLogin(),
-                    ),
-                  );
                 },
                 child: const Text('Sign Out'))
           ],
